@@ -36,6 +36,7 @@ operacional.
    - Adicionando um repositório remoto: `git remote add`
    - Enviando e recebendo alterações: `git push`, `git pull`
    - Clonando um repositório: `git clone`
+   - Usando `git fetch` em vez de `git pull`
 
 6. [Tags e versões](./src/tags.md)
    - Criando tags: `git tag`

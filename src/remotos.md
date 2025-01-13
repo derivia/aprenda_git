@@ -41,6 +41,8 @@ git push origin main
 - `origin` é o nome do repositório remoto.
 - `main` é o nome da branch que você está enviando.
 
+> É importante enviar branches separadamente para evitar conflitos.
+
 ### Recebendo alterações
 
 `git pull` atualiza seu repositório local com as alterações do repositório remoto.
@@ -85,6 +87,48 @@ sequenceDiagram
 
     Remote ->> Local: git clone <URL>
     Note over Remote,Local: Cria uma cópia local do repositório remoto.
+```
+
+----------
+
+## Usando `git fetch` para atualizar o histórico remoto
+
+`git fetch` é usado para baixar as alterações do repositório
+remoto para o seu repositório local, mas não faz o merge automático dessas
+alterações nas suas branches locais.
+
+### Comando:
+```bash
+git fetch origin
+```
+
+- `origin` é o nome do repositório remoto.
+
+Após o `fetch`, você pode visualizar as alterações remotas usando:
+```bash
+git log origin/main
+```
+
+Para integrar as alterações remotas na sua branch local, você pode fazer o merge manualmente:
+```bash
+git merge origin/main
+```
+
+### Por que usar `fetch` em vez de `pull`?
+
+- Com `fetch`, você pode revisar as alterações antes de integrá-las ao seu código.
+- Evita merges automáticos que podem causar conflitos inesperados.
+- Permite que você decida como e quando integrar as alterações.
+
+```mermaid
+sequenceDiagram
+    participant Local as Repositório Local
+    participant Remote as Repositório Remoto
+
+    Remote ->> Local: git fetch origin
+    Note over Remote,Local: Baixa alterações do remoto, mas não altera branches locais.
+    Local ->> Local: git merge origin/main
+    Note over Local: Integra manualmente as alterações remotas na branch local.
 ```
 
 ----------
